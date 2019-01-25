@@ -1,37 +1,37 @@
 'use strict';
 
-var lists = [];
+var users = [];
 
-lists.push({
+users.push({
   id: 1,
-  item: "green eggs",
-  purchased: false,
+  firstName: "Joe",
+  lastName: "Boxer",
   createdAt: new Date(),
   updatedAt: new Date(),
 });
 
-lists.push({
+users.push({
   id: 2,
-  item: "ham",
-  purchased: false,
+  firstName: "Frank",
+  lastName: "Morgan",
   createdAt: new Date(),
   updatedAt: new Date(),
 });
 
-lists.push({
+users.push({
   id: 3,
-  item: "beans",
-  purchased: true,
+  firstName: "Maria",
+  lastName: "Jones",
   createdAt: new Date(),
   updatedAt: new Date(),
 });
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-     return queryInterface.bulkInsert("Lists", lists, {});
+     return queryInterface.bulkInsert("Users", users, {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("Lists", null, {});
+    return queryInterface.bulkDelete("Users", null, {});
   }
 };
