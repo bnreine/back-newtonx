@@ -30,6 +30,20 @@ module.exports = {
     .catch((err) => {
       callback(err);
     })
-  }
+  },
+  addUser(newUser, callback){
+    return User.create(newUser)
+    .then((user) => {
+      let newUser = {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName
+      }
+      callback(null, newUser);
+    })
+    .catch((err) => {
+      callback(err);
+    })
+  },
 
 }
