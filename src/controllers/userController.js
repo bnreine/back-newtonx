@@ -19,7 +19,18 @@ module.exports = {
         res.send({user});
       }
     })
-
-
+  },
+  addUser(req, res, next){
+    let newUser = {
+      firstName: req.body.newUser.firstName,
+      lastName: req.body.newUser.lastName
+    }
+    userQueries.addUser(newUser, (err, user) => {
+      if(err){
+        console.log(err);
+      } else {
+        res.send({user});
+      }
+    })
   }
 }
