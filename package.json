@@ -1,7 +1,7 @@
 {
-  "name": "grocery_list",
+  "name": "User RESTful API",
   "version": "1.0.0",
-  "description": "Add/remove/update/check/uncheck grocery list items synced in real time across multiple devices",
+  "description": "User RESTful API description",
   "main": "src/server.js",
   "scripts": {
     "test": "set NODE_ENV=test&& jasmine",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bnreine/grocery_list.git"
+    "url": "git+https://github.com/bnreine/back_newtonx.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bnreine/grocery_list/issues"
+    "url": "https://github.com/bnreine/back_newtonx/issues"
   },
-  "homepage": "https://github.com/bnreine/grocery_list#readme",
+  "homepage": "https://github.com/bnreine/back_newtonx#readme",
   "devDependencies": {
     "concurrently": "^4.1.0",
     "jasmine": "^3.3.1",
