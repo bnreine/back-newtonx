@@ -1,5 +1,5 @@
 {
-  "name": "User RESTful API",
+  "name": "User_RESTful_API",
   "version": "1.0.0",
   "description": "User RESTful API description",
   "main": "src/server.js",
