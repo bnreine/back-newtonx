@@ -10,5 +10,16 @@ module.exports = {
         res.send({users});
       }
     })
+  },
+  getUser(req, res, next){
+    userQueries.getUser(req.params.userId, (err, user) => {
+      if(err){
+        console.log(err);
+      } else {
+        res.send({user});
+      }
+    })
+
+
   }
 }
