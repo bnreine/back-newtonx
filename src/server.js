@@ -2,11 +2,11 @@ const app = require("./app");
 const http = require("http");
 const socketIo = require("socket.io");
 const port = normalizePort(process.env.PORT || "5000");
-const List = require("./db/models").List;
+//const List = require("./db/models").List;
 app.set("port", port);
 
 const server = http.createServer(app);
-const io = socketIo(server);
+//const io = socketIo(server);
 
 server.listen(port);
 
@@ -24,7 +24,7 @@ function normalizePort(val) {
 
 
 
-
+/*
 io.on("connection", socket => {
   console.log("New client connected"), setInterval(
     () => getListEntriesAndEmit(socket),
@@ -48,7 +48,7 @@ const getListEntriesAndEmit = socket => {
     console.error(`Error: ${err}`);
   })
 };
-
+*/
 
 
 

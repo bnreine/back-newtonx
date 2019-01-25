@@ -1,79 +1,28 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
 import './App.css';
-import GroceryList from './components/GroceryList.js';
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      isAuthenticated: false,
-      currentEmail: '',
-      currentPassword: ''
+      users: []
     }
   }
 
-
-  renderSignInForm(){
-    if(!this.state.isAuthenticated){
-      return(
-        <div className='App'>
-          <h3>Please Sign In...Welcome to the Grocery List Application</h3>
-          <form onSubmit={(e) => this.authenticateUser(e)} >
-            <div>
-              <label htmlFor="email">Email: </label>
-              <input type="text" name="email" value={this.state.currentEmail} onChange={ (e) => this.handleEmailChange(e)} />
-            </div>
-            <div>
-              <label htmlFor="password">Password: </label>
-              <input type="text" name="password" value={this.state.currentPassword} onChange={ (e) => this.handlePasswordChange(e)} />
-            </div>
-            <div>
-              <input type="submit" value="Sign In"/>
-            </div>
-          </form>
-        </div>
-      )
-    }
-  }
-
-  renderGroceryList(){
-    if (this.state.isAuthenticated){
-      return(
-        <Route exact path="/" component={GroceryList} />
-      )
-    }
-  }
-
-  renderSignOutLink(){
-    if(this.state.isAuthenticated){
-      return(
-        <a href="/" className="mdl-navigation__link">Sign Out</a>
-      )
-    }
-  }
-
-
-
-  handleEmailChange(e){
-    this.setState({currentEmail: e.target.value});
-  }
-
-  handlePasswordChange(e){
-    this.setState({currentPassword: e.target.value})
-  }
-
-
-  authenticateUser(e){
+  getAllUsers(e){
     e.preventDefault();
-    if(this.state.currentEmail === "member@gmail.com" && this.state.currentPassword === "mmmmmm"){
-      this.setState({isAuthenticated: true})
-    }
-
+    let url = "/all_users";
+    fetch(url)
+    .then(r => {
+      return r.json();
+    })
+    .then(data => {
+      this.setState({users: data.users});
+    })
+    .catch(e => {
+      console.log(`An error occurred: ${e}`);
+    });
   }
-
-
-
 
 
   render() {
@@ -82,16 +31,32 @@ class App extends Component {
         <header className="mdl-layout__header">
           <div className="mdl-layout-icon"></div>
           <div className="mdl-layout__header-row">
-            <span className="mdl-layout__title">Grocery List</span>
+            <span className="mdl-layout__title">User RESTful API</span>
             <div className="mdl-layout-spacer"></div>
-            <nav className="mdl-navigation">
-              {this.renderSignOutLink()}
-            </nav>
           </div>
         </header>
         <main className="mdl-layout__content">
-          {this.renderSignInForm()}
-          {this.renderGroceryList()}
+          <h5>Get All Users</h5>
+          <button onClick={(e) => this.getAllUsers(e)}>Get All Users</button>
+          <h5>All Users</h5>
+          <ul>
+            {this.state.users.map((user, index) =>
+              <li key={index}><b>User ID:</b> {user.id} | <b>First Name:</b> {user.firstName} | <b>Last Name:</b> {user.lastName}</li>
+            )}
+          </ul>
+          <hr/>
+          <h5>Get User By Id</h5>
+          <input type="text" />
+          <button>Get User (Enter ID)</button>
+          <hr/>
+          <h5>Enter New User Info</h5>
+          <label htmlFor="firstName">First Name</label>
+          <input type="text" name="firstName" />
+          <br/>
+          <label htmlFor="lastName">Last Name</label>
+          <input type="text" name="lastName" />
+          <br/>
+          <button>Add User</button>
         </main>
       </div>
     );
